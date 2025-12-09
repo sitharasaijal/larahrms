@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\EmployeeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+Route::get('/login', [AdminAuthController::class, 'login'])->name('login');
+Route::post('/post-login', [AdminAuthController::class, 'postLogin']);
+Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/employees', [EmployeeController::class, 'employees'])->name('employees');
+    Route::post('/employees_data', [EmployeeController::class, 'getEmployeesData'])->name('employees.data');
+    Route::get('/departments', [EmployeeController::class, 'departments'])->name('departments');
+    Route::post('/post-department', [EmployeeController::class, 'postDepartment']);
 });
+
+
+
+
+
+
+
+
+

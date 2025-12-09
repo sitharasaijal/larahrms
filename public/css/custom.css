@@ -1,0 +1,40 @@
+.error_message{
+    color:red;
+}
+.list-no{
+    list-style: none;
+}
+
+/* Make all Select2 single selects look like Bootstrap form-control */
+.select2-container--default .select2-selection--single {
+    height: 38px;               /* match Bootstrap input height */
+    padding: 6px 12px;          /* match Bootstrap padding */
+    border: 1px solid #ced4da;  /* match Bootstrap border */
+    border-radius: 0.25rem;     /* same border radius */
+    background-color: #fff;     
+    box-sizing: border-box;
+}
+
+/* Align the text vertically */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 25px;          /* adjust for proper vertical alignment */
+    color: #495057;
+}
+
+/* Adjust arrow position */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px;
+    top: 1px;
+}
+
+/* Make dropdown full width like input */
+.select2-container {
+    width: 100% !important;
+}
+
+/* Optional: on focus, match Bootstrap focus style */
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
