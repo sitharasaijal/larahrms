@@ -14,8 +14,8 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"><i
-                            class="fa fa-plus"></i> Add Department</a>
+                    <a href="#" class="btn add-btn add_update_button_department" data-toggle="modal"
+                        data-target="#add_update_department"><i class="fa fa-plus"></i> Add Department</a>
                 </div>
             </div>
         </div>
@@ -30,22 +30,26 @@
                                 <th style="width: 30px;">#</th>
                                 <th>Department Name</th>
                                 <th>Status</th>
+                                <th>Created</th>
                                 <th class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php $slno = 1; @endphp
                             @foreach($departments as $department)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{$slno}}</td>
                                     <td>{{ $department->name }}</td>
                                     <td>{{ $department->status == 0 ? 'Active' : 'Inactive'}}</td>
+                                    <td>{{ $department->created_at->format('d-m-Y')}}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                 aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                                    data-target="#edit_department"><i class="fa fa-pencil m-r-5"></i>
+                                                <a class="dropdown-item add_update_button_department" href="#" data-toggle="modal"
+                                                    data-target="#add_update_department" id={{ $department->id }}><i
+                                                        class="fa fa-pencil m-r-5"></i>
                                                     Edit</a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal"
                                                     data-target="#delete_department"><i class="fa fa-trash-o m-r-5"></i>
@@ -54,6 +58,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @php $slno++; @endphp
                             @endforeach
                         </tbody>
                     </table>
@@ -64,11 +69,11 @@
     <!-- /Page Content -->
 
     <!-- Add Department Modal -->
-    <div id="add_department" class="modal custom-modal fade" role="dialog">
+    <div id="add_update_department" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Department</h5>
+                    <h5 class="modal-title department_modal_title">Add Department</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -78,7 +83,7 @@
                         <input type="hidden" id="id">
                         <div class="form-group">
                             <label>Department Name <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="name">
+                            <input class="form-control" type="text" id="department_name">
                         </div>
                         <div class="form-group">
                             <label>Status <span class="text-danger">*</span></label>
@@ -88,10 +93,12 @@
                                 <option value="1">Inactive</option>
                             </select>
                         </div>
+                        <AlertMessageModal></AlertMessageModal>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn submit_department"
+                            <button class="btn btn-primary submit-btn submit_department" type="button"
                                 id="submit_department">Submit</button>
                         </div>
+
                     </form>
                 </div>
             </div>
