@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 
 
 /*
@@ -32,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/departments', [DepartmentController::class, 'departments'])->name('departments');
     Route::post('/post-department', [DepartmentController::class, 'postDepartment'])->name('post-department');
     Route::get('department/{id}', [DepartmentController::class, 'getDepartmentById'])->name('get-department-by-id');
+    Route::get('/designations', [DesignationController::class, 'designations'])->name('designations');
+    Route::post('/post-designation', [DesignationController::class, 'postDesignation'])->name('post-designation');
+    Route::get('designation/{id}', [DesignationController::class, 'getDesignationById'])->name('get-designation-by-id');
 
 });
 

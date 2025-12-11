@@ -11,6 +11,8 @@
 	var employeesDataUrl = "{{ route('employees.data') }}";  // Blade syntax will generate the correct URL
 	var departmentPostUrl = "{{ route('post-department') }}";
 	var getDepartmentByIdUrl = "{{ route('get-department-by-id', ':id') }}";
+	var designationPostUrl = "{{ route('post-designation') }}";
+	var getDesignationByIdUrl = "{{ route('get-designation-by-id', ':id') }}";
 </script>
 <!-- /Main Wrapper -->
 <!-- jQuery -->
